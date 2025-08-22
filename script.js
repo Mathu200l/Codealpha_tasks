@@ -1,68 +1,66 @@
-const expressionEl = document.getElementById("expression");
-const resultEl = document.getElementById("result");
-const buttons = document.querySelectorAll(".btn");
+document.addEventListener('DOMContentLoaded', () => {
 
-let expr = "";
+    // --- Hamburger Menu Functionality ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-// update UI
-function updateUI() {
-  expressionEl.value = expr || "0";
-  try {
-    let safe = expr.replace(/×/g, "*").replace(/÷/g, "/");
-    if (safe) {
-      let val = Function("return " + safe)();
-      resultEl.textContent = Number.isFinite(val) ? val : "Error";
-    } else {
-      resultEl.textContent = "0";
-    }
-  } catch {
-    resultEl.textContent = "Error";
-  }
-}
+    hamburger.addEventListener('click', () => {
+        // Toggle Nav
+        navLinks.classList.toggle('nav-active');
 
-// button clicks
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const action = btn.dataset.action;
-    const value = btn.dataset.value;
+        // Animate Hamburger Icon
+        hamburger.classList.toggle('toggle');
+    });
+    
+    // Close nav when a link is clicked
+    document.querySelectorAll('.nav-links li a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('nav-active')) {
+                navLinks.classList.remove('nav-active');
+                hamburger.classList.remove('toggle');
+            }
+        });
+    });
 
-    if (action === "clear") {
-      expr = "";
-    } else if (action === "back") {
-      expr = expr.slice(0, -1);
-    } else if (action === "equals") {
-      try {
-        let safe = expr.replace(/×/g, "*").replace(/÷/g, "/");
-        expr = String(Function("return " + safe)());
-      } catch {
-        expr = "";
-      }
-    } else if (value !== undefined) {
-      expr += value;
-    }
-    updateUI();
-  });
+    // --- Section Fade-in on Scroll ---
+    const sections = document.querySelectorAll('.content-section');
+
+    const revealSection = (entries, observer) => {
+        const [entry] = entries;
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Stop observing after it's visible
+    };
+
+    const sectionObserver = new IntersectionObserver(revealSection, {
+        root: null,
+        threshold: 0.15,
+    });
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // --- Active Nav Link Highlighting on Scroll ---
+    const navLinksList = document.querySelectorAll('nav a');
+    const allSections = document.querySelectorAll('section[id]');
+    
+    const highlightNav = () => {
+        let scrollY = window.pageYOffset;
+        
+        allSections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 100; // Adjusted offset
+            const sectionId = current.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                document.querySelector('nav a[href*=' + sectionId + ']').classList.add('active');
+            } else {
+                document.querySelector('nav a[href*=' + sectionId + ']').classList.remove('active');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', highlightNav);
+
 });
-
-// keyboard support
-window.addEventListener("keydown", e => {
-  if ((e.key >= "0" && e.key <= "9") || e.key === ".") {
-    expr += e.key;
-  } else if (["+", "-", "*", "/"].includes(e.key)) {
-    expr += e.key === "*" ? "×" : e.key === "/" ? "÷" : e.key;
-  } else if (e.key === "Backspace") {
-    expr = expr.slice(0, -1);
-  } else if (e.key === "Enter") {
-    try {
-      let safe = expr.replace(/×/g, "*").replace(/÷/g, "/");
-      expr = String(Function("return " + safe)());
-    } catch {
-      expr = "";
-    }
-  } else if (e.key === "Escape") {
-    expr = "";
-  }
-  updateUI();
-});
-
-updateUI();

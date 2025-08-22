@@ -1,44 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Calculator</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Web Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <div class="calculator">
-    <div class="display">
-      <input type="text" id="expression" placeholder="0" readonly>
-      <div id="result">0</div>
-    </div>
-    <div class="buttons">
-      <button class="btn clear" data-action="clear">C</button>
-      <button class="btn back" data-action="back">⌫</button>
-      <button class="btn" data-value="%">%</button>
-      <button class="btn op" data-value="÷">÷</button>
 
-      <button class="btn" data-value="7">7</button>
-      <button class="btn" data-value="8">8</button>
-      <button class="btn" data-value="9">9</button>
-      <button class="btn op" data-value="×">×</button>
+    <header>
+        <nav>
+            <a href="#home" class="logo">YourName.</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
 
-      <button class="btn" data-value="4">4</button>
-      <button class="btn" data-value="5">5</button>
-      <button class="btn" data-value="6">6</button>
-      <button class="btn op" data-value="-">-</button>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Creative Web Developer</h1>
+                <p class="fade-in">I design and build beautiful, responsive, and user-friendly websites. Based in Agra, India.</p>
+                <a href="#projects" class="btn fade-in">View My Work</a>
+            </div>
+        </section>
 
-      <button class="btn" data-value="1">1</button>
-      <button class="btn" data-value="2">2</button>
-      <button class="btn" data-value="3">3</button>
-      <button class="btn op" data-value="+">+</button>
+        <section id="about" class="about-section content-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hello! I'm a passionate self-taught developer with a knack for creating elegant solutions in the least amount of time. I specialize in front-end development with a strong focus on user experience and responsive design. My goal is to build things that are both useful and beautiful.</p>
+                        <p>Here are a few technologies I’ve been working with recently:</p>
+                        <ul class="skills-list">
+                            <li>HTML5 & CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>React</li>
+                            <li>Node.js</li>
+                            <li>Git & GitHub</li>
+                            <li>Figma</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://via.placeholder.com/400" alt="Your Name">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <button class="btn" data-value="0">0</button>
-      <button class="btn" data-value=".">.</button>
-      <button class="btn equal" data-action="equals">=</button>
-    </div>
-  </div>
+        <section id="projects" class="projects-section content-section">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/500x300" alt="Project One">
+                        <div class="project-info">
+                            <h3>Project One Title</h3>
+                            <p>A brief description of the project, the technologies used, and its purpose.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" target="_blank">GitHub <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/500x300" alt="Project Two">
+                        <div class="project-info">
+                            <h3>Project Two Title</h3>
+                            <p>A brief description of the project, the technologies used, and its purpose.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" target="_blank">GitHub <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/500x300" alt="Project Three">
+                        <div class="project-info">
+                            <h3>Project Three Title</h3>
+                            <p>A brief description of the project, the technologies used, and its purpose.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" target="_blank">GitHub <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script src="script.js"></script>
+        <section id="contact" class="contact-section content-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-subtitle">Have a question or want to work together? Feel free to reach out!</p>
+                <a href="mailto:youremail@example.com" class="btn">Say Hello</a>
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
